@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features - Student Helper</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0d0d2b;
+            color: white;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .dark-mode {
+            background-color: #1a1a2e;
+            color: #ccc;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: linear-gradient(90deg, #16213e, #0f3460);
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.1);
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            padding: 0;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .moon-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .features {
+            padding: 40px;
+        }
+        .feature-list {
+            text-align: left;
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            background: #1a1a2e;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+        }
+        .feature-list li {
+            padding: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+        footer {
+            background: linear-gradient(90deg, #16213e, #0f3460);
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Student Helper</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="updates.html">Updates</a></li>
+            </ul>
+        </nav>
+        <button class="moon-btn" onclick="toggleDarkMode()">🌙</button>
+    </header>
+    
+    <section class="features">
+        <h1>Website Features</h1>
+        <ul class="feature-list">
+            <li>1. AI-powered study assistant to solve academic queries.</li>
+            <li>2. Interactive math problem solvers with step-by-step explanations.</li>
+            <li>3. Programming help with code debugging and solutions.</li>
+            <li>4. Study resources including notes, guides, and video tutorials.</li>
+            <li>5. Community forum to discuss doubts and share knowledge.</li>
+            <li>6. User authentication for secure and personalized experience.</li>
+            <li>7. Dark mode option for better readability at night.</li>
+            <li>8. Regular updates with new learning materials and tools.</li>
+            <li>9. Mobile-friendly responsive design.</li>
+            <li>10. Free and open access to all resources.</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Student Helper. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+</body>
+</html>

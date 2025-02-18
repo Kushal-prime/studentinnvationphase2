@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore - Student Helper</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0d0d2b;
+            color: white;
+            text-align: center;
+            transition: 0.3s;
+            overflow-y: auto;
+        }
+        .dark-mode {
+            background-color: #1a1a2e;
+            color: #ccc;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: linear-gradient(90deg, #16213e, #0f3460);
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.1);
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            padding: 0;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .moon-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .section {
+            padding: 40px;
+            margin: 20px auto;
+            max-width: 800px;
+            background: #1a1a2e;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .ai-box {
+            padding: 20px;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            color: white;
+            border-radius: 10px;
+        }
+        .review {
+            background: #1a1a2e;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+        }
+        footer {
+            background: linear-gradient(90deg, #16213e, #0f3460);
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Student Helper</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="ask.html">Ask Questions</a></li>
+            </ul>
+        </nav>
+        <button class="moon-btn" onclick="toggleDarkMode()">🌙</button>
+    </header>
+    
+    <section class="section ai-box">
+        <h2>AI Assistant</h2>
+        <p>Get instant solutions to your questions with our AI-powered assistant!</p>
+        <button class="submit-btn">Ask AI</button>
+    </section>
+    
+    <section class="section">
+        <h2>Student Reviews</h2>
+        <div class="review">
+            <p><strong>John Doe:</strong> "This website helped me solve my toughest math problems! Highly recommended!"</p>
+        </div>
+        <div class="review">
+            <p><strong>Emily Smith:</strong> "I love the AI Assistant! It provides quick and accurate answers to my queries."</p>
+        </div>
+        <div class="review">
+            <p><strong>Michael Lee:</strong> "Great platform for students! The dark mode is a nice touch for late-night studies."</p>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Student Helper. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+</body>
+</html>

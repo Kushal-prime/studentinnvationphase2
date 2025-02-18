@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Techniques for Engineering Students</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+            text-align: center;
+            overflow-y: scroll; /* Enables scrolling */
+            scroll-behavior: smooth; /* Smooth scroll effect */
+            height: 100vh;
+        }
+
+        /* Navbar (Menu) */
+        .navbar {
+            background-color: #333;
+            padding: 15px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar a {
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-size: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.3s, padding-left 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #444;
+            padding-left: 40px;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 70px; /* To avoid the navbar */
+            padding: 30px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1f3a63, #457fca);
+            padding: 20px;
+            color: white;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 36px;
+            transition: transform 0.3s;
+        }
+
+        h1:hover {
+            transform: scale(1.1);
+        }
+
+        h2 {
+            font-size: 28px;
+            margin-top: 20px;
+            color: #f0f0f0;
+        }
+
+        /* Section Styles */
+        .section {
+            background-color: #333;
+            border-radius: 12px;
+            margin: 20px 0;
+            padding: 20px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .section:hover {
+            transform: scale(1.02);
+            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .section h3 {
+            color: #457fca;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+
+        .section ul {
+            text-align: left;
+            list-style-type: square;
+            padding-left: 30px;
+            color: #f0f0f0;
+        }
+
+        .section ul li {
+            margin: 10px 0;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        .section ul li:hover {
+            color: #457fca;
+        }
+
+        .review-section {
+            margin-top: 30px;
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .review-section h2 {
+            color: #457fca;
+            margin-bottom: 15px;
+        }
+
+        .review-card {
+            background-color: #333;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .review-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 5px 18px rgba(0, 0, 0, 0.2);
+        }
+
+        .review-card h3 {
+            margin: 5px 0;
+            color: #457fca;
+        }
+
+        .review-card p {
+            font-size: 16px;
+            color: #ccc;
+        }
+
+        /* Button Style */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #457fca;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 18px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #1f3a63;
+            transform: scale(1.05);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navbar (Menu) -->
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="#study-techniques">Study Techniques</a>
+        <a href="#about">About</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <header class="header">
+            <h1>Study Techniques for Engineering Students</h1>
+        </header>
+
+        <section id="study-techniques" class="section">
+            <h2>Top 10 Study Techniques</h2>
+            <ul>
+                <li><strong>Active Recall:</strong> Test yourself regularly to improve memory retention.</li>
+                <li><strong>Spaced Repetition:</strong> Review material over increasing intervals to strengthen memory.</li>
+                <li><strong>Pomodoro Technique:</strong> Study for 25 minutes, then take a 5-minute break. Repeat.</li>
+                <li><strong>Feynman Technique:</strong> Teach a concept to someone else to better understand it.</li>
+                <li><strong>Mind Mapping:</strong> Use diagrams to organize ideas and make connections.</li>
+                <li><strong>Study in Intervals:</strong> Avoid cramming and take regular breaks to refresh your mind.</li>
+                <li><strong>Use Multiple Sources:</strong> Study from textbooks, notes, and online resources for a broader understanding.</li>
+                <li><strong>Stay Organized:</strong> Keep your study materials and notes well-organized for easy access.</li>
+                <li><strong>Group Study:</strong> Collaborate with peers to solve problems and share knowledge.</li>
+                <li><strong>Healthy Lifestyle:</strong> Ensure you get enough sleep, exercise, and eat well to maintain focus.</li>
+            </ul>
+        </section>
+
+        <section id="about" class="section">
+            <h2>About This Guide</h2>
+            <p>This guide provides study techniques specifically designed for engineering students. These strategies will help you maximize productivity, retention, and understanding of complex topics.</p>
+        </section>
+
+        <section class="review-section">
+            <h2>Reviews</h2>
+            
+            <div class="review-card">
+                <h3>John Doe</h3>
+                <p>This guide helped me manage my time effectively. The Pomodoro technique is a game-changer!</p>
+            </div>
+            
+            <div class="review-card">
+                <h3>Sarah Smith</h3>
+                <p>The active recall and spaced repetition methods helped me retain knowledge for exams. Highly recommended!</p>
+            </div>
+            
+            <div class="review-card">
+                <h3>Michael Johnson</h3>
+                <p>As an engineering student, these techniques are exactly what I needed to improve my study habits!</p>
+            </div>
+        </section>
+
+        <a href="#" class="btn">Read More</a>
+
+    </div>
+
+</body>
+</html>

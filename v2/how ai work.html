@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn How to Use AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0d0d2b;
+            color: white;
+            text-align: center;
+            overflow-x: hidden;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .main-content {
+            margin-left: 270px;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(90deg, #16213e, #0f3460);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            color: #ffcc00;
+            transition: transform 0.3s;
+        }
+
+        h1:hover {
+            transform: scale(1.1);
+        }
+
+        h2 {
+            color: #ff416c;
+            transition: color 0.3s;
+        }
+
+        h2:hover {
+            color: #ffcc00;
+        }
+
+        .section {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .section:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #ff416c;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .btn:hover {
+            background: #ffcc00;
+            transform: scale(1.1);
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 100%;
+            background-color: #16213e;
+            padding-top: 20px;
+            box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            padding: 15px;
+            text-align: left;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #0f3460;
+            padding-left: 20px;
+            transform: scale(1.05);
+        }
+
+        footer {
+            padding: 10px;
+            background-color: #0f3460;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        footer:hover {
+            background-color: #16213e;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#how-ai-works">How AI Works</a></li>
+            <li><a href="#prompt-engineering">Prompt Engineering</a></li>
+            <li><a href="#tips">Mastering AI Prompts</a></li>
+            <li><a href="#tasks">Fun AI Tasks</a></li>
+        </ul>
+    </div>
+    
+    <div class="main-content">
+        <header class="header">
+            <h1>Learn How to Use AI</h1>
+        </header>
+        
+        <section id="how-ai-works" class="section">
+            <h2>How AI Works</h2>
+            <p>AI uses machine learning and data to recognize patterns and generate responses. It learns from vast amounts of text to provide meaningful answers.</p>
+        </section>
+        
+        <section id="prompt-engineering" class="section">
+            <h2>How to Write Effective Prompts</h2>
+            <p>To get better AI responses, be clear and specific. Use structured prompts and provide examples.</p>
+        </section>
+        
+        <section id="tips" class="section">
+            <h2>Mastering AI Prompting</h2>
+            <ul>
+                <li><strong>Be Specific:</strong> AI works best with clear, detailed instructions.</li>
+                <li><strong>Use Examples:</strong> Show AI what kind of response you expect.</li>
+                <li><strong>Break It Down:</strong> Complex queries work better when split into steps.</li>
+            </ul>
+        </section>
+        
+        <section id="tasks" class="section">
+            <h2>Fun AI Tasks</h2>
+            <p>Try these simple tasks to see how AI responds:</p>
+            <ul>
+                <li>Ask AI to write a short poem about space.</li>
+                <li>Get AI to generate a daily motivation quote.</li>
+                <li>Use AI to summarize your favorite book in one paragraph.</li>
+            </ul>
+        </section>
+        
+        <footer>
+            <p>&copy; 2025 Student Helper. All rights reserved.</p>
+        </footer>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore-compat.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0d0d2b;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .login-wrapper {
+            display: flex;
+            width: 85%;
+            max-width: 1300px;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 72px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin: 0;
+        }
+
+        .logo-img {
+            width: 60px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        .login-container {
+            background-color: #1a1a2e;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+            width: 400px;
+            text-align: center;
+        }
+
+        .login-container h2 {
+            color: #ff416c;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: white;
+            font-size: 18px;
+        }
+
+        .input-group input {
+            width: calc(100% - 22px);
+            padding: 12px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            background-color: #28283e;
+            color: white;
+            font-size: 16px;
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            display: inline-block;
+            width: 100%;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(255, 65, 108, 0.4);
+        }
+
+        .signup-link {
+            margin-top: 25px;
+            color: white;
+        }
+
+        .signup-link a {
+            color: #ff416c;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+
+        .google-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #db4437;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+
+        .google-button:hover {
+            background-color: #c1351d;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="logo">
+            <img src="logo-main.png" alt="Logo" class="logo-img">
+            Student Helper
+        </div>
+        <div class="login-container">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="email" id="username" name="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn">Login</button>
+            </form>
+            <div class="signup-link">
+                Don't have an account? <a href="signup.html">Sign Up</a>
+            </div>
+            <button id="google-login" class="google-button">Continue with Google</button>
+        </div>
+    </div>
+
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDqYydmWOGMy0pwSBCHcyI19rqBdu4H5-I",
+            authDomain: "student-innovation-c1428.firebaseapp.com",
+            projectId: "student-innovation-c1428",
+            storageBucket: "student-innovation-c1428.appspot.com",
+            messagingSenderId: "848651583026",
+            appId: "1:848651583026:web:472c042fe45924d9fc462b",
+            measurementId: "G-15QEJW0K3Y"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginForm = document.getElementById('loginForm');
+            const googleLoginButton = document.getElementById('google-login');
+
+            loginForm.addEventListener('submit', handleLoginFormSubmit);
+            googleLoginButton.addEventListener('click', handleGoogleLogin);
+
+            auth.onAuthStateChanged(handleAuthStateChange);
+        });
+
+        function handleLoginFormSubmit(e) {
+            e.preventDefault();
+            const email = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            auth.signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    alert("Login successful!");
+                    window.location.href = "dashboard.html"; // Redirect to dashboard
+                })
+                .catch((error) => {
+                    alert(error.message);
+                });
+        }
+
+        function handleGoogleLogin() {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            auth.signInWithPopup(provider)
+                .then((result) => {
+                    const user = result.user;
+                    alert(`Welcome, ${user.displayName}`);
+                    window.location.href = "dashboard.html"; // Redirect to dashboard
+                })
+                .catch((error) => {
+                    alert(error.message);
+                });
+        }
+
+        function handleAuthStateChange(user) {
+            if (user) {
+                window.location.href = "dashboard.html"; // Redirect if logged in
+            }
+        }
+    </script>
+</body>
+</html>

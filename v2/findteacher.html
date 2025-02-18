@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find a Teacher</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0d0d2b;
+            color: white;
+            text-align: center;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: linear-gradient(90deg, #16213e, #0f3460);
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+
+        /* Search and Filter */
+        .search-container {
+            margin: 20px;
+        }
+
+        .search-container input {
+            padding: 8px;
+            width: 200px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .sort-container {
+            margin: 10px;
+        }
+
+        .sort-container select {
+            padding: 8px;
+            border-radius: 5px;
+            border: none;
+            background-color: #1a1a2e;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .sort-container select:hover {
+            background-color: #0f3460;
+        }
+
+        /* Teacher Panels */
+        .content {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            padding: 40px;
+            justify-content: center;
+        }
+
+        .teacher-card {
+            background: #1a1a2e;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s, width 0.3s;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            height: 80px;
+            width: 120px;
+        }
+
+        .teacher-card img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-bottom: 5px;
+        }
+
+        .teacher-card:hover {
+            width: 240px;
+            height: 140px;
+            transform: translateY(-5px);
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .teacher-card h3, .teacher-card p, .teacher-card button {
+            display: none;
+        }
+
+        .teacher-card:hover h3, .teacher-card:hover p, .teacher-card:hover button {
+            display: block;
+        }
+
+        .teacher-card h3 {
+            font-size: 14px;
+            margin: 5px 0;
+        }
+
+        .teacher-card button {
+            padding: 6px 10px;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 12px;
+            margin: 3px;
+        }
+
+        .status {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            border: 1px solid white;
+        }
+
+        .online { background-color: green; }
+        .offline { background-color: red; }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(90deg, #16213e, #0f3460);
+            padding: 15px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Student Helper</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Find a Teacher</a></li>
+                <li><a href="#">Ask a Doubt</a></li>
+                <li><a href="#">Dashboard</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <h1>Find a Teacher</h1>
+        <p>Connect with experts to get your doubts resolved.</p>
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Search for a teacher...">
+        </div>
+        <div class="sort-container">
+            <select id="sort">
+                <option value="name">Sort by Name</option>
+                <option value="subject">Sort by Subject</option>
+                <option value="experience">Sort by Experience</option>
+            </select>
+        </div>
+    </section>
+    
+    <section id="teacher-list" class="content">
+        <script>
+            const teachers = Array.from({ length: 12 }, (_, i) => ({ name: `Teacher ${i + 1}`, status: i % 2 === 0 ? 'online' : 'offline' }));
+            document.getElementById('teacher-list').innerHTML = teachers.map(t => `
+                <div class="teacher-card">
+                    <div class="status ${t.status}"></div>
+                    <img src="teacher-placeholder.jpg" alt="${t.name}">
+                    <h3>${t.name}</h3>
+                    <button>Message</button>
+                    <button>Book Appointment</button>
+                </div>
+            `).join('');
+        </script>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Student Helper. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Solver</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0d0d2b;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 100px auto;
+            background: #1a1a2e;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        .btn {
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 16px;
+        }
+        .btn:hover {
+            transform: scale(1.1);
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+    <script>
+        function solveMathProblem() {
+            let problem = document.getElementById("mathProblem").value;
+            if(problem === "") {
+                document.getElementById("result").innerHTML = "Please enter a math problem.";
+            } else {
+                document.getElementById("result").innerHTML = "Processing... (Backend needed)";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Math Solver</h1>
+        <p>Enter your math problem below and get an instant solution!</p>
+        <input type="text" id="mathProblem" placeholder="e.g. 5 + 3 * (2^3)">
+        <button class="btn" onclick="solveMathProblem()">Solve</button>
+        <div class="result" id="result"></div>
+    </div>
+</body>
+</html>

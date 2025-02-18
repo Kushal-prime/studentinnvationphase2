@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Problem Solver</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0d0d2b;
+            color: white;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        header {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: linear-gradient(90deg, #16213e, #0f3460);
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .logo-img {
+            width: 40px; /* Adjust size  as needed */
+            height: auto;
+            margin-right: 10px; /* Space between the logo and text */
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        nav ul li a:hover {
+            background: #ff416c;
+        }
+        .menu-btn {
+            position: absolute;
+            right: 20px; /* Adjust this value as needed */
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .menu {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 10px;
+            background: #16213e;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+            padding: 10px;
+        }
+        .menu ul {
+            list-style: none;
+            padding: 0;
+        }
+        .menu ul li {
+            padding: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .menu ul li:last-child {
+            border-bottom: none;
+        }
+        .menu ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        .hero {
+            padding: 50px;
+            background: radial-gradient(circle, #0f3460, #1a1a2e);
+            box-shadow: 0px 0px 50px rgba(255, 255, 255, 0.2);
+        }
+        .btn {
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Normal Button without Hover Effects */
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+            padding-top: 30px;
+            padding-right: 50px;
+        }
+        .auth-buttons button {
+            position: relative;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b); /* Gradient background */
+            color: white;
+            padding: 10px 20px; /* Normal padding */
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: all 0.3s ease; /* Smooth transition */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Add shadow */
+        }
+        .auth-buttons button:hover {
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4); /* Enhanced shadow on hover */
+        }
+
+        .auth-buttons button span {
+            position: relative;
+            z-index: 1;
+        }
+        /* Slider */
+        .slider-container {
+            margin-top: 50px; /* Adjust space between hero and slider */
+            position: relative;
+            width: 100vw; /* Full width */
+            height: 300px; /* Adjust height as needed */
+            margin: auto;
+            overflow: hidden;
+            border-radius: 0; /* Remove rounded corners */
+            box-shadow: none; /* Optional: Remove shadow */
+        }
+        .slider {
+            display: flex;
+            width: 300%; /* Ensure all slides fit */
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slider img {
+            width: 100vw; /* Each image takes full screen width */
+            height: 100%; /* Adjust height automatically */
+            object-fit: cover; /* Maintain aspect ratio */
+        }
+        button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 24px;
+            z-index: 10;
+        }
+
+        .prev { left: 20px; }
+        .next { right: 20px; }
+        button:hover { background: rgba(255, 65, 108, 0.7); }
+
+        /* Cards*/
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+             padding: 40px;
+        }
+        
+        .card {
+            background: #1a1a2e;
+            padding: 20px;
+            border-radius: 10px;
+            width: 250px;
+            box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+            transition: 0.3s;
+            text-align: center;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        .card img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .btn {
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+                display: inline-block;
+            margin-top: 10px;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            transform: scale(1.1);
+        }
+        .main-card {
+            width: 850px;
+            padding: 50px;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .card-poster {
+            margin: 5px auto; /* Center the poster */
+            width: 1000px; /* Set a fixed width */
+            height: auto; /* Maintain aspect ratio */
+            display: block; /* Prevent image from creating extra space */
+        }
+
+        .card-poster img {
+            width: 100%; /* Image fills the container */
+            height: auto; /* Height adjusts to maintain aspect ratio */
+            display: block; /* Prevent image from creating extra space */
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(90deg, #16213e, #0f3460);
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo-main.png" alt="Logo" class="logo-img">
+            Student spark
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="features.html">Features</a></li>
+                <li><a href="#blogs">Blogs</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html">about us</a></li>
+
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
+            <button onclick="window.location.href='login.html'"><span>Login</span></button>
+            <button onclick="window.location.href='signup.html'"><span>Sign Up</span></button>
+        </div>
+        <button class="menu-btn" onclick="toggleMenu()">☰</button>
+        <div id="menu" class="menu">
+            <ul>
+                
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#help">Help</a></li>
+                <li><a href="Q&A.html">Q&A</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </div>
+    </header>
+
+
+    <section class="hero">
+        <h1>Find Solutions to Your Problems</h1>
+        <p>Explore various resources to solve academic and technical issues.</p>
+        <a href="#explore" class="btn">Get Started</a>
+    </section>
+ 
+    <div class="slider-container">
+        <div class="slider">
+            <img src="effective-study-techniques.jpg" alt="Slide 1">
+            <img src="exam-preparation-tips.jpg" alt="Slide 2">
+            <img src="time-management-for-students.jpg" alt="Slide 3">
+        </div>
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+    
+    <section id="explore" class="content">
+        <div class="card main-card">
+            <h2>Connect With Teachers</h2>
+            <p>Get solution to your problems by connecting with your ideal teacher.</p>
+            <a href="collegelist.html" class="btn">Connect With Teachers</a>
+        </div>
+        <div class="card">
+            <h2>Math Problem Solvers</h2>
+            <p>Find tools to solve complex math equations easily.</p>
+            <a href="maths-solver.html" class="btn">Go to Math Solver</a>
+        </div>
+        <div class="card">
+            <h2>Programming Help</h2>
+            <p>Get coding solutions and debugging assistance.</p>
+            <a href="coding_help.html" class="btn">Explore</a>
+        </div>
+        <div class="card">
+            <h2>Study Resources</h2>
+            <p>Effective study techniques and learning materials.</p>
+            <a href="study_tips.html" class="btn">Explore</a>
+        </div>
+        <div class="card">
+            <h2>Study tools</h2>
+            <p>Boost productivity with the Pomodoro technique.</p>
+            <a href="pomodoro.html" class="btn">Explore</a>
+        </div>
+        <div class="card">
+            <h2>meditation section</h2>
+            <p>Find tools to solve complex math equations easily.</p>
+            <a href="meditation section.html" class="btn">start meditation</a>
+        </div>
+        <div class="card">
+            <h2>how AI  work </h2>
+            <p>how to master AI/p>
+            <a href="how ai work.html" class="btn">start learning</a>
+        </div>
+        <div class="card">
+            <h2>study technique </h2>
+            <p>how to master AI/p>
+            <a href="study-technique.html" class="btn">start learning</a>
+        </div>
+    </section>
+        <section id="card-poster" class="content">
+        <div class="card card-poster">
+            <img src="poster.jpg" alt="Poster">
+    </section>
+
+    <section id="additional-content" class="content">
+        <div class="card">
+            <img src="effective-study-techniques.jpg" alt="Effective Study Techniques">
+            <h2>Effective Study Techniques</h2>
+            <a href="study-technique.html" class="learn-more-button">Learn More</a>
+             <p>Learn strategies to enhance your concentration and retain knowledge better.</p>
+            <a href="study_techniques.html" class="btn">Learn More</a>
+        </div>
+        <div class="card">
+            <img src="time-management-for-students.jpg" alt="My Image">
+            <h2>Time Management for Students</h2>
+            <p>Organize your study schedule efficiently and boost productivity.</p>
+            <a href="time_management.html" class="btn">Read More</a>
+        </div>
+        <div class="card">
+            <img src="exam-preparation-tips.jpg" alt="Exam Preparation Tips">
+            <h2>Exam Preparation Tips</h2>
+            <p>Get useful tips to prepare for exams effectively without stress.</p>
+            <a href="exam_tips.html" class="btn">Explore</a>
+        </div>
+    <!-- Example button to "Learn More" -->
+
+
+
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Student Helper. All rights reserved.</p>
+    </footer>
+<script>
+
+function toggleMenu() {
+            var menu = document.getElementById('menu');
+            if (menu.style.display === 'block') {
+                menu.style.display = 'none';
+            } else {
+                menu.style.display = 'block';
+            }
+        }
+
+        let index = 0;
+
+function moveSlide(step) {
+    const slides = document.querySelector(".slider");
+    const total = slides.children.length;
+    index = (index + step + total) % total;
+    slides.style.transform = `translateX(${-index * 100}vw)`;
+}
+
+// Auto-slide every 3 seconds
+setInterval(() => moveSlide(1), 3000);
+
+</script>
+
+</body>
+</html>

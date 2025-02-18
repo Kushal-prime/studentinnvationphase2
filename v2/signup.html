@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module">
+        // Import Firebase SDKs
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore.js";
+
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDqYydmWOGMy0pwSBCHcyI19rqBdu4H5-I",
+            authDomain: "student-innovation-c1428.firebaseapp.com",
+            projectId: "student-innovation-c1428",
+            storageBucket: "student-innovation-c1428.appspot.com",
+            messagingSenderId: "848651583026",
+            appId: "1:848651583026:web:472c042fe45924d9fc462b",
+            measurementId: "G-15QEJW0K3Y"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const provider = new GoogleAuthProvider();
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // Handle Email Sign-up
+            document.getElementById("signup-form").addEventListener("submit", async (e) => {
+                e.preventDefault();
+                const username = document.getElementById("username").value;
+                const email = document.getElementById("email").value;
+                const password = document.getElementById("password").value;
+                const confirmPassword = document.getElementById("confirmPassword").value;
+
+                if (password !== confirmPassword) {
+                    alert("Passwords do not match!");
+                    return;
+                }
+                try {
+                    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                    const user = userCredential.user;
+                    await setDoc(doc(db, "users", user.uid), {
+                        username: username,
+                        email: user.email
+                    });
+                    alert("Account created successfully!");
+                    window.location.href = "dashboard.html";
+                } catch (error) {
+                    console.error("Sign-up error:", error);
+                    alert(error.message);
+                }
+            });
+
+            // Handle Google Sign-in
+            document.getElementById("google-signup").addEventListener("click", async () => {
+                try {
+                    const result = await signInWithPopup(auth, provider);
+                    const user = result.user;
+                    await setDoc(doc(db, "users", user.uid), {
+                        username: user.displayName,
+                        email: user.email
+                    }, { merge: true });
+                    alert("Google Sign-In successful!");
+                    window.location.href = "dashboard.html";
+                } catch (error) {
+                    console.error("Google Sign-in error:", error);
+                    alert(error.message);
+                }
+            });
+        });
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0d0d2b;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .container {
+            max-width: 400px;
+            width: 100%;
+            background: #1a1a2e;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .form-container input, .form-container button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: none;
+        }
+        .form-container button {
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .form-container button:hover {
+            transform: scale(1.05);
+        }
+        .google-btn {
+            background: white;
+            color: black;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .google-btn img {
+            width: 20px;
+            height: 20px;
+        }
+        .google-btn:hover {
+            background: #e0e0e0;
+        }
+        .login-btn {
+            background: none;
+            border: none;
+            color: #ff416c;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        .login-btn:hover {
+            color: #ff4b2b;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to My Site</h1>
+    <div class="container">
+        <h1>Sign Up</h1>
+        <div class="form-container">
+            <form id="signup-form">
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                <button type="submit">Sign Up</button>
+            </form>
+            <p>OR</p>
+            <button id="google-signup" class="google-btn">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" alt="Google Logo"> Sign up with Google
+            </button>
+            <p>Already have an account? <button class="login-btn" onclick="location.href='login.html'">Login</button></p>
+        </div>
+    </div>
+</body>
+</html>

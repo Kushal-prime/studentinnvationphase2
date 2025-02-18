@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find a College</title>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore.js"></script>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0d0d2b;
+            color: white;
+            text-align: center;
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: linear-gradient(90deg, #16213e, #0f3460);
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+
+        /* Search Bar */
+        .search-container {
+            margin: 20px;
+        }
+
+        .search-container input {
+            padding: 8px;
+            width: 200px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        /* College List */
+        .college-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 40px;
+            justify-content: center;
+        }
+
+        .college-card {
+            background: #1a1a2e;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .college-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Add College Section */
+        .add-college-container {
+            margin: 20px;
+        }
+
+        .add-college-container input {
+            padding: 8px;
+            width: 200px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .add-college-container button {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .add-college-container button:hover {
+            background-color: #45a049;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(90deg, #16213e, #0f3460);
+            padding: 15px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Study Spark</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="teachers.html">Find a Teacher</a></li>
+                <li><a href="#">Find a College</a></li>
+                <li><a href="#">Dashboard</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section class="hero">
+        <h1>Find a College</h1>
+        <p>Browse colleges to explore academic opportunities.</p>
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Search for a college..." onkeyup="searchColleges()">
+        </div>
+    </section>
+    
+    <!-- Add College Section -->
+    <div class="add-college-container">
+        <input type="text" id="new-college-name" placeholder="Enter New College Name">
+        <button onclick="addCollege()">Add College</button>
+    </div>
+
+    <section id="college-list" class="college-container">
+        <!-- Colleges will be dynamically added here -->
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Student Helper. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        // Replace with your Firebase project configuration
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID",
+            measurementId: "YOUR_MEASUREMENT_ID"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore(app);
+
+        // Function to load colleges from Firestore
+        function loadColleges() {
+            const collegeListContainer = document.getElementById('college-list');
+            collegeListContainer.innerHTML = ''; // Clear existing list
+
+            db.collection('colleges').get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    const college = doc.data();
+                    const collegeCard = document.createElement('div');
+                    collegeCard.className = 'college-card';
+                    collegeCard.textContent = college.name;
+                    collegeCard.onclick = () => redirectToTeachers(college.name);
+                    collegeListContainer.appendChild(collegeCard);
+                });
+            }).catch((error) => {
+                console.error('Error getting colleges: ', error);
+            });
+        }
+
+        // Function to add a new college to Firestore
+        function addCollege() {
+            const collegeName = document.getElementById('new-college-name').value;
+            if (collegeName) {
+                db.collection('colleges').add({
+                    name: collegeName,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                }).then(() => {
+                    console.log('College added successfully');
+                    loadColleges();  // Reload the college list
+                }).catch((error) => {
+                    console.error('Error adding college: ', error);
+                });
+            }
+        }
+
+        // Call loadColleges on page load
+        window.onload = loadColleges;
+
+        // Redirect function to move to teacher list page
+        function redirectToTeachers(collegeName) {
+            window.location.href = `findteachers.html?college=${encodeURIComponent(collegeName)}`;
+        }
+
+        // Function for search
+        function searchColleges() {
+            let input = document.getElementById('search').value.toLowerCase();
+            let cards = document.querySelectorAll('.college-card');
+            cards.forEach(card => {
+                if (card.textContent.toLowerCase().includes(input)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+    </script>
+</body>
+</html>
